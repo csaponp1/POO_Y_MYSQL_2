@@ -146,12 +146,14 @@
     <ClCompile Include="Marca.cpp" />
     <ClCompile Include="ConexionBD.cpp" />
     <ClCompile Include="Producto.cpp" />
+    <ClCompile Include="Proveedor.cpp" />
     <ClCompile Include="proyecto_c_sql.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Marca.h" />
     <ClInclude Include="ConexionBD.h" />
     <ClInclude Include="Producto.h" />
+    <ClInclude Include="Proveedor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

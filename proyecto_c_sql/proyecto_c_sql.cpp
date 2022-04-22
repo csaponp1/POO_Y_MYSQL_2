@@ -3,6 +3,7 @@
 #include <mysql.h>
 #include "Marca.h"
 #include "Producto.h"
+#include "Proveedor.h"
 
 
 
@@ -12,6 +13,9 @@ int main() {
     string producto, descripcion, fecha_ingreso, marca;
     int id_marca=0, existencia=0, op=0;
     float precio_c=0, precio_v=0;
+
+    string proveedor, nit, direccion;
+    int telefono=0;
     bool ciclo = true;
     
     
@@ -21,7 +25,8 @@ int main() {
         cout << "BIENVENIDO" << endl;
         cout << " 1. CRUD productos" << endl;
         cout << " 2. CRUD marcas" << endl;
-        cout << "3. salir" << endl;
+        cout << " 3. CRUD proveedores" << endl;
+        cout << " 4. salir" << endl;
         cin >> op;
         do
         {
@@ -126,7 +131,7 @@ int main() {
                     cout << "desea eliminar? (1/0)" << endl;
                     cin >> op3;
 
-                    if (op == 1)
+                    if (op3 == 1)
                         obj.eliminar(x);
                     else {
                         cout << "no se elimino" << endl;
@@ -224,10 +229,102 @@ int main() {
 
                     break;
             }
+            {
+                case 3:
+                    bool ciclo5 = true;
+                    Proveedor obj3 = Proveedor(proveedor, nit, direccion, telefono);
+                   
+                    cout << " PROVEEDORES " << endl;
+                    cout << "1. crear" << endl;
+                    cout << "2. leer" << endl;
+                    cout << "3. actualizar" << endl;
+                    cout << "4. eliminar" << endl;
+                    cout << "5. salir" << endl;
+                    cin >> op2;
+                        switch (op2) {
+                            {
+                            case 1:
+                                cout << "\n-----------------------------CREAR-----------------------------------------" << endl;
+                                cin.ignore();
+                                cout << "ingrese proveedor" << endl;
+                                getline(cin, proveedor);
+                                cout << "ingrese nit" << endl;
+                                getline(cin,nit);
+                                cout << "ingrese direccion" << endl;
+                                getline(cin, direccion);
+                                cout << "ingrese telefono" << endl;
+                                cin >> telefono;
 
+                                obj3.setProveedor(proveedor);
+                                obj3.setNit(nit);
+                                obj3.setDireccion(direccion);
+                                obj3.setTelefono(telefono);
+                                obj3.crear();
+                                
+                                break;
+                            }
+                            {
+                            case 2:
+                                system("cls");
+                                cout << "-------------------------------MOSTRAR----------------------------------------" << endl;
+                                obj3.leer();
+                                break;
+                            }
+                        
+                            {
+                            case 3:
+                                cout << "\n---------------------------------ACTUALIZAR--------------------------------------" << endl;
+                                cout << "ingrese nuevos datos! luego haga el where" << endl;       
+                                cin.ignore();
+                                cout << "ingrese proveedor" << endl;
+                                getline(cin, proveedor);
+                                cout << "ingrese nit" << endl;
+                                getline(cin, nit);
+                                cout << "ingrese direccion" << endl;
+                                getline(cin, direccion);
+                                cout << "ingrese telefono" << endl;
+                                cin >> telefono;
+
+                                obj3.setProveedor(proveedor);
+                                obj3.setNit(nit);
+                                obj3.setDireccion(direccion);
+                                obj3.setTelefono(telefono);
+
+                                obj3.actualizar();
+                                break;
+                            }
+                            {
+                            case 4:
+                                int op5 = 0;
+                                cout << "ingrese el id a eliminar" << endl;
+                                cin >> x;
+                                obj3.leer(x);
+
+                                cout << "desea eliminar? (1/0)" << endl;
+                                cin >> op5;
+
+                                if (op5 == 1) {
+                                    obj3.eliminar(x);
+                                }
+                                else {
+                                    cout << "no se elimino!" << endl;
+                                }
+                                break; 
+                            }
+                        
+                        case 5:
+                            ciclo5 = false;
+                            ciclo2 = false;
+                            break;
+                        }
+
+                    break;
+            }
             
+         
             
-         case 3:
+            ////////////////////////////////
+            case 4:
              ciclo2 = false;
              break;
             
@@ -236,7 +333,7 @@ int main() {
 
         }while (ciclo2 != 0);
 
-    } while (op<3);
+    } while (op<4);
 
     system("pause");
 
